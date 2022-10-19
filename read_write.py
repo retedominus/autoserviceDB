@@ -11,9 +11,10 @@ def read_db(f_name):
 
 
 def write_db(f_name, dat):
-    with open(f_name, 'w') as file:
-        writer = csv.writer(file)
-        writer.writerows(data)
+    if dat:
+        with open(f_name, 'w') as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
 
 
 data = [['id_vehicle',	'ModelMark',	'Manufact_date',	'Reg_num',	'id_client'],
