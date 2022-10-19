@@ -10,7 +10,7 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
     # (по умолчанию разделитель равен пробелу)
 
     # Получаем из файла reader - список словарей
-    reader, status_message = mod_c.read_all_vehicles(f_name)
+    reader, status_message = mod_c.read_all_table(f_name)
     if status_message != '':
         print(f'ошибка чтения {f_name}')
         return False
@@ -34,7 +34,7 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
     return True
 
 
-#Вывод всех записейd
+#Вывод всех записей
 show_fields = ['ModelMark', 'Reg_num', 'id_vehicle']
 view_all(mod_c.vehicles_fname, show_fields, '*****')
 #view_all(mod_c.vehicles_fname, divider='*****')

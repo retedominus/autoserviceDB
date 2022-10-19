@@ -53,7 +53,7 @@ def create_rec(f_name: str, new_rec_dat: dict, key_names: list, id_name: str):
 
     return True, new_id
 
-def read_all_vehicles(f_name: str):
+def read_all_table(f_name: str):
     # функция создает новую запись в таблице транспортных средств
     # парамерты:
     # функция возвращает кортеж список словарей записей таблицы и сообщение об ошибке:
