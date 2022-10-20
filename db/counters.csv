@@ -1,0 +1,6 @@
+﻿fname;id_name;cur_cnt
+db/vehicles.csv;id_vehicle;13
+db/personal.csv;id_personal;4
+db/clients.csv;id_client;4
+db/status.csv;id_status;3
+db/worklog.csv;id_work;4
