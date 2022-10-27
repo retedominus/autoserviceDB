@@ -10,7 +10,7 @@ counters_fname = 'db/counters.csv'
 
 
 def create_rec_table(f_name: str, new_rec_dat: dict, tbl_field_names: list, id_name: str):
-    # функция создает новую запись в таблице транспортных средств
+    # функция создает новую запись в таблице
     # парамерты:
     # new_rec_dat - словарь с данными для создаваемой записи
     # tbl_field_names - список полей таблицы. особенно важно для пустой таблицы БД
@@ -135,3 +135,58 @@ def read_all_table(f_name: str):
     if status_message != '':
         return None, None, f'Ошибка чтения данных из таблицы базы данных {f_name}'
     return reader, field_names, ''
+
+
+def update_rec_table(f_name: str, upd_rec_dat: dict, id_name: str):
+    # функция обновляет запись в таблице f_name
+    # парамерты:
+    # upd_rec_dat - словарь записи с обновленными данными
+    # tbl_field_names - полный список полей таблицы. особенно важно для заполнения пустых полей.
+    # id_name - название поля идентификатора
+    # функция возвращает кортеж:
+    # либо True (успешно создана запись), идентификатор новой записи
+    # либо False (ошибка создания записи), сообщение об ошибке
+
+    # читаем таблицу БД в список словарей - reader
+    reader, fields_names, message_status = read_csv_file(f_name)
+
+    # если таблица reader не пустая, то проверяем список ключей key_names,
+    # чтобы в нем были значения ключей такие же, как в таблице reader
+    if len(reader) > 0:
+        for k in fields_names:
+            if not (k in reader[0].keys()):
+                return False, f'В параметре функции update_rec_table неверно указаны названия полей обновляемй записи: {k}'
+
+    upd_rec = []
+    isFinded = False
+    # находим запись в таблице reader,
+    # идентификатор которой соответсвует записи upd_rec_dat[id_name]
+    for row in reader:
+        if row[id_name] == upd_rec_dat[id_name]:
+            # устанавливаем ссылку upd_rec на найденную запись
+            upd_rec = row
+            isFinded = True
+            break
+    # если такая запись не была найдена по идентификатору, то прекращаем выполнение функции
+    if isFinded == False:
+        return False, 'Ошибка. Обновляемая запись не найдена по идентификатору!'
+
+    for k in fields_names:
+        if k in upd_rec_dat.keys():
+            upd_rec[k] = upd_rec_dat[k]
+        else:
+            # если такого поля нет в словаре upd_rec_dat, то присваиваем полю значение '',
+            # то есть считается что это полю присвоено пустое значение
+            upd_rec[k] = ''
+
+    # делаем сначала резервную копию таблицы БД
+
+
+    # перезаписываем таблицу в БД. Функция write_csv_file содержит код
+    # создания резерной копии файла (с расширением .bak), перед полной перезаписью файла
+    bool_status, message_status = write_csv_file(f_name, reader, fields_names)
+    if bool_status == False:
+        return False, message_status
+
+    # иначе все операции должны успешно выполниться, поэтому возвращаем True, ''
+    return True, ''

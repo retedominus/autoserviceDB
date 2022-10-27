@@ -51,3 +51,10 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
 
 #status, rec_id = mod_c.create_rec_table(mod_c.vehicles_fname, new_rec_dat, field_names, id_name)
 #print(status, rec_id)
+
+
+#Пример обновления записи:
+
+upd_rec_dat = {'id_vehicle': '59', 'ModelMark': 'MAZ', 'Reg_num': 'К123АМ134'}
+bool_res, mes = mod_c.update_rec_table(mod_c.vehicles_fname, upd_rec_dat, 'id_vehicle')
+print(bool_res, mes)
