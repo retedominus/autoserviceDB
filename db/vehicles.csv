@@ -1,13 +1,5 @@
 ﻿id_vehicle;ModelMark;Manufact_date;Reg_num;id_client
-1;Toyota Corolla;01.10.2008;А436КТ163;1
-2;Nissan Pathfinder;12.12.2015;М451ОВ78;2
-3;LADA Priora;20.05.2020;Л542ПР99;3
-4;Porsche Cayenne;;В345ТЕ99;
-5;Porsche Cayenne;;В345ТЕ99;
-6;Porsche Cayenne;;В345ТЕ99;
-7;Porsche Cayenne;;В345ТЕ99;
-8;Porsche Cayenne;;В345ТЕ99;
-9;Porsche Cayenne;;В345ТЕ99;
-10;Porsche Cayenne;;В345ТЕ99;
-11;Porsche Cayenne;;В345ТЕ99;
-12;Porsche Cayenne;;В345ТЕ99;
+1;Toyota_Corolla;01.10.2008;А436КТ163;1
+2;Nissan_Pathfinder;12.12.2015;М451ОВ78;2
+3;LADA_Priora;20.05.2020;Л542ПР99;3
+
