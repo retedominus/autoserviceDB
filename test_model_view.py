@@ -17,11 +17,12 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
     # в начале выводим заголовок
     # для отображения используем список полей show_field_names, если он задан.
     # А если он пуст - [], то выводим все поля таблицы row.keys()
+    pmt=[]
     tmp = []
     for fld in show_field_names if show_field_names else field_names:
         tmp.append(fld)
     tmp_str = divider.join(tmp)
-    print(tmp_str)
+    pmt.append(tmp_str)
     # для каждой строки cписка словарей (таблица читается в виде списка словарей)
     for row in reader:
         # выводим поля через разделитель divider
@@ -29,8 +30,8 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
         for fld in show_field_names if show_field_names else field_names:
             tmp.append(row[fld])
         tmp_str = divider.join(tmp)
-        print(tmp_str)
-    return True
+        pmt.append(tmp_str)
+    return pmt
 
 
 # #Вывод всех записей
@@ -43,10 +44,10 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
 
 
 #Добавление записи. В словаре новой записи не обязательно все поля должны быть заполнены
-new_rec_dat = {'ModelMark': 'Porsche Cayenne', 'Reg_num': 'В345ТЕ99'}
+#new_rec_dat = {'ModelMark': 'Porsche Cayenne', 'Reg_num': 'В345ТЕ99'}
 #список всех полей таблицы
-field_names = ['id_vehicle', 'ModelMark', 'Manufact_date', 'Reg_num', 'id_client']
-id_name = 'id_vehicle'
+#field_names = ['id_vehicle', 'ModelMark', 'Manufact_date', 'Reg_num', 'id_client']
+#id_name = 'id_vehicle'
 
-status, rec_id = mod_c.create_rec_table(mod_c.vehicles_fname, new_rec_dat, field_names, id_name)
-print(status, rec_id)
+#status, rec_id = mod_c.create_rec_table(mod_c.vehicles_fname, new_rec_dat, field_names, id_name)
+#print(status, rec_id)
