@@ -6,11 +6,14 @@ import model_common as com
 #import read_write as rw
 import test_model_view as tmv
 #import view_tests as vt
+
 def split_list(p):
     g = []
     for i in p:
       g.append(i.split())
     return g
+
+
 view.show_greetings()
 while True:
   ch=int(view.show_category_menu())
@@ -52,7 +55,8 @@ while True:
             case 1:
 
                 p=view.input_client_fio()
-                k=split_list(p)
+                k = p.split()
+                #k=split_list(p)
                 new_rec_dat={'first_name':k[0],'family_name':k[1],'middle_name':k[2],'birth_date':'20.03.2002','phones':'79652364589'}
                 field_names = ['id_client','first_name','family_name','middle_name','birth_date','phones']
                 id_name = 'id_client'
