@@ -190,3 +190,34 @@ def update_rec_table(f_name: str, upd_rec_dat: dict, id_name: str):
 
     # иначе все операции должны успешно выполниться, поэтому возвращаем True, ''
     return True, ''
+
+def find_recs_in_table(f_name: str, filter_dat: dict):
+    # функция делает выборку записей из таблицы f_name
+    # парамерты:
+    # f_name - таблица в которой производим поиск
+    # filter_dat - словарь с критериями поиска
+    # функция возвращает кортеж:
+    # либо True (успешно выбрана(ы) запись(и)), список словарей найденных строк таблицы
+    # либо False (ошибка создания записи), сообщение об ошибке
+
+    # читаем таблицу БД в список словарей - reader
+    reader, fields_names, message_status = read_csv_file(f_name)
+    if message_status != '':
+        return False, f'Ошибка получения данных из таблицы {f_name}'
+
+    # формируем выборку. Если все критерии в словаре filter_dat совпадают,
+    # то помещаем строку в результат
+
+    res = []
+    isFinded = True
+    for row in reader:
+        isFinded = True
+        for k in filter_dat.keys():
+            if row[k] != filter_dat[k]:
+                isFinded = False
+                break
+        if isFinded:
+            res.append(row)
+
+    # иначе все операции должны успешно выполниться, поэтому возвращаем True, и выборку
+    return True, res
