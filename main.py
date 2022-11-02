@@ -36,11 +36,15 @@ while True:
             case 3:
                 divider = ' '
                 show_field_names = []
-                p = tmv.view_all(f_name, show_field_names, divider)
-
-                table = split_list(p)
+                #p - список словарей (строк таблицы данных в файле csv
+                tbl_dict, field_names, status_message = com.read_all_table(f_name)
+                #p = tmv.view_all(f_name, show_field_names, divider)
+                #table = split_list(p)
                 # print(table)
-                view.show_table(table)
+                if status_message == '':
+                    #преобразуем список словарей в список списков, чтобы далее показать таблицу
+                    tbl_list = view.convert_listofdicts_to_listoflists(tbl_dict)
+                    view.show_table(tbl_list)
             case 4:
                 a=12
             case 5:

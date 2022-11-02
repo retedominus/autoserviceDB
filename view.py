@@ -57,6 +57,15 @@ def show_table(table):
     __print_row_border(spans)
     __print_table_rows(table, spans)
 
+def convert_listofdicts_to_listoflists(reader):
+    #функция преобразует список словарей в список списков
+    res = []
+    for row in reader:
+        cur_list = []
+        for k in row:
+            cur_list.append(row[k])
+        res.append(cur_list)
+    return res
 
 def show_error(error):
     print(f"Произошла ошибка: {error}")
