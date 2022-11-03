@@ -191,6 +191,36 @@ def update_rec_table(f_name: str, upd_rec_dat: dict, id_name: str):
     # иначе все операции должны успешно выполниться, поэтому возвращаем True, ''
     return True, ''
 
+def delete_rec_table(f_name: str, filter_dat: dict):
+    # функция удаляет запись в таблице f_name
+    # парамерты:
+    # filter_dat - словарь-фильтр удаляемых записей
+    # функция возвращает кортеж:
+    # либо True (успешно удалена запись), '' - пустая строка
+    # либо False (ошибка удаления записи), сообщение об ошибке
+
+    # читаем таблицу БД в список словарей - reader
+    reader, fields_names, message_status = read_csv_file(f_name)
+
+    for i, row in enumerate(reader):
+        isFinded = True
+        for k in filter_dat.keys():
+            if row[k] != filter_dat[k]:
+                isFinded = False
+                break
+        if isFinded:
+            del reader[i]
+
+    # перезаписываем таблицу в БД. Функция write_csv_file содержит код
+    # создания резерной копии файла (с расширением .bak), перед полной перезаписью файла
+    bool_status, message_status = write_csv_file(f_name, reader, fields_names)
+    if bool_status == False:
+        return False, message_status
+
+    # иначе все операции должны успешно выполниться, поэтому возвращаем True, ''
+    return True, reader
+
+
 def find_recs_in_table(f_name: str, filter_dat: dict):
     # функция делает выборку записей из таблицы f_name
     # парамерты:
