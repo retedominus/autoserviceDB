@@ -17,7 +17,7 @@ def view_all(f_name, show_field_names: list = [], divider: str = ' '):
     # в начале выводим заголовок
     # для отображения используем список полей show_field_names, если он задан.
     # А если он пуст - [], то выводим все поля таблицы row.keys()
-    pmt=[]
+    pmt = []
     tmp = []
     for fld in show_field_names if show_field_names else field_names:
         tmp.append(fld)

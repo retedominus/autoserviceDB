@@ -13,6 +13,9 @@ def input_technician_fio():
 def input_vehicle_model():
     return input("Введите модель транспортного средства\n")
 
+def input_vehicle_id():
+    return input("Введите id транспортного средства\n")
+
 
 def input_gov_number():
     return input("Введите гос. номер\n")
@@ -38,7 +41,7 @@ def show_category_menu():
 
 def show_action_menu():
     return input(
-        "1 - Добавить запись\n2 - Найти запись\n3 - Вывести все записи\n4 - Редактировать запись\n5 - Назад\n")
+        "1 - Добавить запись\n2 - Найти запись\n3 - Вывести все записи\n4 - Редактировать запись\n5 - Удалить запись\n6 - Назад\n")
 
 
 def show_success():
@@ -60,8 +63,18 @@ def show_table(table):
 def convert_listofdicts_to_listoflists(reader):
     #функция преобразует список словарей в список списков
     res = []
-    for row in reader:
+    cur_list = []
+
+    # добавляем непосредственно данные
+    for i, row in enumerate(reader):
         cur_list = []
+        if i == 0:
+            # добавляем название полей в начале
+            for key, value in row.items():
+                cur_list.append(key)
+            res.append(cur_list)
+            cur_list = []
+        #выводим данные
         for k in row:
             cur_list.append(row[k])
         res.append(cur_list)
