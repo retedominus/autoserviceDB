@@ -119,6 +119,27 @@ def create_rec_table(f_name: str, new_rec_dat: dict, tbl_field_names: list, id_n
 #     # поэтому вовзращаем True и идентификатор новой записи
 #     return True, new_id
 
+def convert_listofdicts_to_listoflists(reader):
+    #функция преобразует список словарей в список списков
+    res = []
+    cur_list = []
+
+    # добавляем непосредственно данные
+    for i, row in enumerate(reader):
+        cur_list = []
+        if i == 0:
+            # добавляем название полей в начале
+            for key, value in row.items():
+                cur_list.append(key)
+            res.append(cur_list)
+            cur_list = []
+        #выводим данные
+        for k in row:
+            cur_list.append(row[k])
+        res.append(cur_list)
+    return res
+
+
 def read_all_table(f_name: str):
     # функция создает новую запись в таблице транспортных средств
     # парамерты:
@@ -126,7 +147,7 @@ def read_all_table(f_name: str):
     # в случае успеха:
     # reader - строки таблицы (список словарей reader),
     # field_names - список названий полей таблицы
-    # пустое сообщение об ошибке
+
 
     # в случае ошибки возвращается: None, None и сообщение об ошибке
 
@@ -134,7 +155,8 @@ def read_all_table(f_name: str):
     reader, field_names, status_message = read_csv_file(f_name)
     if status_message != '':
         return None, None, f'Ошибка чтения данных из таблицы базы данных {f_name}'
-    return reader, field_names, ''
+    tbl_lists = convert_listofdicts_to_listoflists(reader)
+    return tbl_lists, field_names, ''
 
 
 def update_rec_table(f_name: str, upd_rec_dat: dict, id_name: str):
@@ -218,7 +240,8 @@ def delete_rec_table(f_name: str, filter_dat: dict):
         return False, message_status
 
     # иначе все операции должны успешно выполниться, поэтому возвращаем True, ''
-    return True, reader
+    tbl_lists = convert_listofdicts_to_listoflists(reader)
+    return True, tbl_lists
 
 
 def find_recs_in_table(f_name: str, filter_dat: dict):
@@ -250,4 +273,5 @@ def find_recs_in_table(f_name: str, filter_dat: dict):
             res.append(row)
 
     # иначе все операции должны успешно выполниться, поэтому возвращаем True, и выборку
-    return True, res
+    tbl_lists = convert_listofdicts_to_listoflists(res)
+    return True, tbl_lists
