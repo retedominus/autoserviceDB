@@ -2,8 +2,59 @@ def show_greetings():
     print("Добро пожаловать в autoserviceDB!")
 
 
-def input_client_fio():
-    return input("Введите фио клиента\n")
+def input_client_first_name():
+    return input("Введите имя клиента\n")
+
+def input_client_family_name():
+    return input("Введите фамилию клиента\n")
+
+def input_client_middle_name():
+    return input("Введите отчество клиента\n")
+
+def input_client_birth_date():
+    return input("Введите дату рождения клиента\n")
+
+def input_client_phones():
+    return input("Введите телефон(ы) клиента\n")
+
+def input_id_work():
+    return input("Введите id оказанной услуги\n")
+
+def input_pers_id():
+    return input("Введите id сотрудника фирмы\n")
+
+def input_pers_first_name():
+    return input("Введите имя клиента\n")
+
+def input_pers_family_name():
+    return input("Введите фамилию клиента\n")
+
+def input_pers_middle_name():
+    return input("Введите отчество клиента\n")
+
+def input_pers_birth_date():
+    return input("Введите дату рождения клиента\n")
+
+def input_pers_phones():
+    return input("Введите телефон(ы) клиента\n")
+
+def input_pers_position():
+    return input("Введите должность клиента\n")
+
+def input_work_description():
+    return input("Введите описание оказанной услуги\n")
+
+def input_work_begin_date():
+    return input("Введите дату начала оказания услуги\n")
+
+def input_work_end_date():
+    return input("Введите дату окончания оказания услуги\n")
+
+def input_work_price():
+    return input("Введите стоимость оказываемой услуги\n")
+
+def input_id_status():
+    return input("Введите id статуса работ\n")
 
 
 def input_technician_fio():
@@ -19,6 +70,9 @@ def input_vehicle_id():
 
 def input_gov_number():
     return input("Введите гос. номер\n")
+
+def input_id_client():
+    return input("Введите id клиента\n")
 
 
 def input_repairs_start():
@@ -36,12 +90,12 @@ def show_srvice_menu():
 
 def show_category_menu():
     return input(
-        "1 - Информация об автомобилях\n2 - Информация о клиентах\n3 - Журнал услуг\n4 - Учет персонала\n5 - Выход\n")
+        "\n1 - Информация об автомобилях\n2 - Информация о клиентах\n3 - Журнал услуг\n4 - Учет персонала\n5 - Выход\n")
 
 
 def show_action_menu():
     return input(
-        "1 - Добавить запись\n2 - Найти запись\n3 - Вывести все записи\n4 - Редактировать запись\n5 - Удалить запись\n6 - Назад\n")
+        "\n1 - Добавить запись\n2 - Найти запись\n3 - Вывести все записи\n4 - Редактировать запись\n5 - Удалить запись\n6 - Назад\n")
 
 
 def show_success():
@@ -60,25 +114,6 @@ def show_table(table):
     __print_row_border(spans)
     __print_table_rows(table, spans)
 
-def convert_listofdicts_to_listoflists(reader):
-    #функция преобразует список словарей в список списков
-    res = []
-    cur_list = []
-
-    # добавляем непосредственно данные
-    for i, row in enumerate(reader):
-        cur_list = []
-        if i == 0:
-            # добавляем название полей в начале
-            for key, value in row.items():
-                cur_list.append(key)
-            res.append(cur_list)
-            cur_list = []
-        #выводим данные
-        for k in row:
-            cur_list.append(row[k])
-        res.append(cur_list)
-    return res
 
 def show_error(error):
     print(f"Произошла ошибка: {error}")
