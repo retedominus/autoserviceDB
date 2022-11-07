@@ -60,10 +60,10 @@ def input_technician_fio():
     return input("Введите фио слесаря\n")
 
 def input_vehicle_model():
-    return input("Введите модель транспортного средства\n")
+    return input("Введите модель автомобиля\n")
 
 def input_vehicle_id():
-    return input("Введите id транспортного средства\n")
+    return input("Введите id автомобиля\n")
 
 
 def input_gov_number():

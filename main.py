@@ -316,7 +316,7 @@ while True:
             # Выводим значения полей для редактирования
             edit_rec_dat = {'id_work': edit_id,
                             'id_vehicle': view.input_vehicle_id(),
-                            'id_personal': view.input_id_personal(),
+                            'id_personal': view.input_pers_id(),
                             'Description': view.input_work_description(),
                             'Begin_date': view.input_work_begin_date(),
                             'end_date': view.input_work_end_date(),
