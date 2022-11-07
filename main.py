@@ -55,11 +55,6 @@ while True:
                 case _:
                     print('Введите целое число, выберите значение из списка.')
 
-        # выход из программы
-        # case ['5']:
-        #     view.show_goodbye()
-        #     break
-
         case (['1', '6'] | ['2', '6'] | ['3', '6'] | ['4', '6']):
             # Выбор - Назад, возврат в главное меню
             cur_menu_pos = []
@@ -72,7 +67,7 @@ while True:
             # Создать запись
             new_rec_dat = {'ModelMark': view.input_vehicle_model(), 'Manufact_date': view.input_repairs_start(),
                            'Reg_num': view.input_gov_number(),
-                           'id_client': view.input_vehicle_id()}
+                           'id_client': view.input_id_client()}
             field_names = ['id_vehicle', 'ModelMark', 'Manufact_date', 'Reg_num', 'id_client']
             id_name = 'id_vehicle'
             status, new_id = com.create_rec_table(f_name, new_rec_dat, field_names, id_name)

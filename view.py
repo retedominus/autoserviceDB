@@ -56,10 +56,8 @@ def input_work_price():
 def input_id_status():
     return input("Введите id статуса работ\n")
 
-
 def input_technician_fio():
     return input("Введите фио слесаря\n")
-
 
 def input_vehicle_model():
     return input("Введите модель транспортного средства\n")
